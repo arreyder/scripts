@@ -1,10 +1,11 @@
-#/usr/bin/perl
-# makes sure every check in cass is on a noit
-# I do lots of terrible things here for various reason. :)
-# Ask me why.
-# TODO: get percassa working so I do not have to use cqlsh.
-# TODO: more efficient way of finding checks on the noit
-# expects to be run on a cass server
+#!/usr/bin/perl
+## makes sure every check in cass is on a noit
+## I do lots of terrible things here for various reason. :)
+## Ask me why.
+## TODO: get percassa working so I do not have to use cqlsh.
+## TODO: more efficient way of finding checks on the noit
+## expects to be run on a cass server
+##
 #
 use warnings;
 use strict;
@@ -16,10 +17,11 @@ use Parallel::ForkManager;
 
 binmode STDOUT, ":utf8";
 
+my $pm = new Parallel::ForkManager(16);
+my @collectors = `grep collector /etc/hosts | grep -v syd | cut -f1 -d' '`;
+my $api_server = "lon3-maas-stage-api0";
 my $managed_token = $ARGV[0];
 my $cass_server = "10.13.237.13";
-my $pm = new Parallel::ForkManager(8);
-my $api_server = "lon3-maas-stage-api0";
 my $cmd = "show checks\n";
 
 my $pid = open3(\*WRITE, \*READ,0,"/usr/local/bin/cqlsh $cass_server 9160");
@@ -28,10 +30,9 @@ print WRITE "USE ELE;\n";
 print WRITE "select * from unified_account_external_idx;\n";
 close(WRITE);
 
-my $header = <READ>;
+my $header = <READ>; #get past a useless line
 my %collectors = &get_collectors;
 
-#print "Header: $header";
 while ( <READ> ) {
   $pm->start and next;
   if (!(m/^$/)) {
@@ -54,14 +55,14 @@ while ( <READ> ) {
             my $col_ip = $collectors{$_};
             my $result = &get_noit_checks($collectors{$_},$pattern);
             if ($result eq "nomatch") {
-              print RED, $status, " MISSING: $pattern col: $col_ip", RESET;
+              print RED, $status, " MISSING: $pattern col: $col_ip\n", RESET;
+            }
+            elsif ($result eq "matched") {
+                print GREEN, "m", RESET;
             }
             else {
-              if ($result eq "matched") {
-                print GREEN, $status, " matched: $pattern col: $col_ip", RESET;
-              }
+              print RED,"WTF:MAIN",RESET;
             }
-          print "\n";
           }
         }
       }
@@ -111,11 +112,13 @@ sub get_checks {
     my $cid = $v->{'id'};
     #my $mz = $v->{'monitoring_zones_poll'};
     my $col;
-    unless (defined ($col = $v->{'collectors'})) { print "WTF: $response\n"};
-    #my $col = $v->{'collectors'};
-    #print "get_checks: check: $cid colls: ",join(",",@$col),"\n";
-    my $cs = join(",",@$col);
-    $c{$cid} = $cs;
+    if (defined ($col = $v->{'collectors'})) {
+      #my $col = $v->{'collectors'};
+      #print "get_checks: check: $cid colls: ",join(",",@$col),"\n";
+      my $cs = join(",",@$col);
+      $c{$cid} = $cs;
+    }
+    else { print YELLOW,"b",RESET; } # bound check
   }
   return \%c;
 }
@@ -139,11 +142,16 @@ sub get_noit_checks {
   while (<$sock>) {
     if ($_ =~ /arguments expected/) {
       $sock->close();
+      print RED, "-", RESET;
       return "nomatch";
     }
-    next unless($_ =~ /$p/);
-    return "matched";
-    last;
-    $sock->close();
+    elsif (($_ =~ /`v\d:(.+)/) && ($_ =~ /$p/)) {
+      $sock->close();
+      return "matched";
+      last;
+    }
+#    else { 
+#      print BLUE, "s", RESET;
+#    }
   }
 }
