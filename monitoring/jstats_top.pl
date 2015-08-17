@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 system("clear");
-my $ppid = `jps -lv | awk '/CassandraDaemon/ {print \$1}'`;
+my $ppid = `sudo -u cassandra jps -lv | awk '/CassandraDaemon/ {print \$1}'`;
 chomp $ppid;
 
 while(1) {
