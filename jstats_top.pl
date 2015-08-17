@@ -4,10 +4,10 @@ use warnings;
 
 system("clear");
 my $ppid = `jps -lv | awk '/CassandraDaemon/ {print \$1}'`;
+chomp $ppid;
 
 while(1) {
   my %h;
-  chomp $ppid;
   my @jstack = `sudo -u cassandra jstack $ppid`;
   my $cmd = "top -d0.1 -n1 -b -u cassandra -H | awk '/cassandr/ {print \$1,\$9}'";
   my @threads = `$cmd`;
@@ -23,8 +23,8 @@ while(1) {
     "\L$a" cmp "\L$b"
   } keys %h;
 
-  my @highest = @keys[0..20];
-
+  my @highest = @keys[0..30];
+  system("clear");
   foreach my $k (@highest) {
     my $hex = sprintf("0x%x", $k);
     foreach (@jstack) {
@@ -32,7 +32,5 @@ while(1) {
       print "\%CPU:$h{$k}, PID:$k THREAD:$_\n" if ($_  =~ m/$hex/);
     }
   }
-  sleep 5;
-  system("clear");
+  sleep 10;
 }
-
