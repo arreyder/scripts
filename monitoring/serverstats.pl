@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 use strict;
+use threads;
+use threads::shared;
 use Data::Dumper;
 use IO::Socket::INET;
 use LWP::UserAgent;
@@ -54,23 +56,74 @@ setsockopt($sock, SOL_SOCKET,  SO_KEEPALIVE,   1);
 connect($sock, $sin) or die "connect: $!";
 
 while (1) {
+  my $all_data;
+  my $start = time;
 
-  (my $all_data) = &get_meminfo . &get_netstats . &get_loadavg . &get_conntrack . &get_open_files . &get_raw_vmstat . &get_vmstats . &get_ifdata . &get_disk_stats . &get_df . &get_cpu_stats . &get_jvm_jstats;
+  my $t1 = threads->new(\&get_meminfo);
+  my $t2 = threads->new(\&get_netstats);
+  my $t3 = threads->new(\&get_loadavg);
+  my $t4 = threads->new(\&get_conntrack);
+  my $t5 = threads->new(\&get_open_files);
+  my $t6 = threads->new(\&get_raw_vmstat);
+  my $t7 = threads->new(\&get_vmstats);
+  my $t8 = threads->new(\&get_ifdata);
+  my $t9 = threads->new(\&get_disk_stats);
+  my $t10 = threads->new(\&get_df);
+  my $t11 = threads->new(\&get_cpu_stats);
+  my $t12 = threads->new(\&get_jvm_jstats);
 
+  $all_data .= $t1->join;
+  $all_data .= $t2->join;
+  $all_data .= $t3->join;
+  $all_data .= $t4->join;
+  $all_data .= $t5->join;
+  $all_data .= $t6->join;
+  $all_data .= $t7->join;
+  $all_data .= $t8->join;
+  $all_data .= $t9->join;
+  $all_data .= $t10->join;
+  $all_data .= $t11->join;
+  $all_data .= $t12->join;
+  
   if ($nodetool) {
-    $all_data .= &get_tpstats . &get_cfstats . &get_cass_info . &get_cass_rpc . &get_cass_se_proxy;
+    my $c1 = threads->new(\&get_tpstats);
+    my $c2 = threads->new(\&get_cfstats);
+    my $c3 = threads->new(\&get_cass_info);
+    my $c4 = threads->new(\&get_cass_rpc);
+    my $c5 = threads->new(\&get_cass_se_proxy);
+ 
+    $all_data .= $c1->join;
+    $all_data .= $c2->join;
+    $all_data .= $c3->join;
+    $all_data .= $c4->join;
+    $all_data .= $c5->join;
   }
 
   if (-e "/etc/sv/zookeeper") {
     $all_data .= &get_zk_stats;
   }
 
+  my $adjusted_sleep;
+  my $duration = time - $start;
+
+  if ($duration gt 59) {
+    $adjusted_sleep = 59;
+  }
+  else {
+    $adjusted_sleep = 60 - $duration;
+  }
+  my $pfx = set_pfx("serverstats");
+  my $metrics = $all_data =~ tr/\n// + 2;
+  $all_data .= "$pfx.duration $duration $start\n";
+  $all_data .= "$pfx.metrics $metrics $start\n";  
+
   print $all_data;
   
   unless (print $sock $all_data) {
     die "Failed to send data: $!\n";
   }
-  sleep 60;
+
+  sleep $adjusted_sleep;
 }
 
 sub set_pfx {
@@ -330,10 +383,20 @@ sub get_cass_info {
       $data_string .= "$pfx.load $load $time\n";
       next;
     }
-    if ($_ =~ m/Heap\sMemory\s\(MB\)\s:\s(\d+\.\d+)\s\/\s\d+\.\d+/) {
+    if ($_ =~ m/Heap\sMemory\s\(MB\)\s+:\s(\d+\.\d+)\s\/\s\d+\.\d+/) {
       my $heap = $1;
       $data_string .= "$pfx.heap $heap $time\n";
       next;
+    }
+    if ($_ =~ m/Off\sHeap\sMemory\s+\(MB\)\s:\s(\d+\.\d+)/) {
+      my $heap = $1;
+      $data_string .= "$pfx.heap $heap $time\n";
+      next;
+    }
+    if ($_ =~ m/Exceptions\s+:\s(\d+)/) {
+      my $load = $1;
+      $data_string .= "$pfx.load $load $time\n";
+    next;
     }
   }
   return  ($data_string);
