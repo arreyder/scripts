@@ -10,16 +10,15 @@ if ($num_args != 2) {
 
 my $user = $ARGV[0];
 my $process_id = $ARGV[1];
-$process_id = substr( $process_id, 0, 7 );
+my $short_user = substr( $user, 0, 7 );
 
-system("clear");
 my $ppid = `sudo -u $user jps -lv | awk '/$process_id/ {print \$1}'`;
 chomp $ppid;
 
 while(1) {
   my %h;
   my @jstack = `sudo -u $user jstack $ppid`;
-  my $cmd = "top -d0.1 -n1 -b -u $user -H | awk '/$process_id/ {print \$1,\$9}'";
+  my $cmd = "top -d0.1 -n1 -b -u $user -H | awk '/$short_user/ {print \$1,\$9}'";
   my @threads = `$cmd`;
   foreach (@threads) {
     chomp;
