@@ -1,3 +1,5 @@
+<div id="page1-div" style="position:relative;width:918px;height:1188px;">
+
 ** **
 
 **Payment Card Industry (PCI)  **
@@ -25,6 +27,10 @@ January 2017 
  
 
 ** **
+
+</div>
+
+<div id="page2-div" style="position:relative;width:918px;height:1188px;">
 
 ** **
 
@@ -141,6 +147,10 @@ Updated version numbering to align with other SAQs  
 ** **
 
 ** **
+
+</div>
+
+<div id="page3-div" style="position:relative;width:918px;height:1188px;">
 
 ** **
 
@@ -374,6 +384,10 @@ Updated version numbering to align with other SAQs  
 
 **Section 3:**  **Validation and Attestation Details ……………………………………………………………88** 
 
+</div>
+
+<div id="page4-div" style="position:relative;width:918px;height:1188px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1  *
@@ -473,6 +487,10 @@ These and other resources can be found on the PCI SSC website *(www.pc
 Organizations are encouraged to review the PCI DSS and other supporting documents before beginning 
 
 an assessment.  
+
+</div>
+
+<div id="page5-div" style="position:relative;width:918px;height:1188px;">
 
 ** **
 
@@ -586,6 +604,10 @@ would not need to validate requirements related to secure storage of cardh
 
 Requirement 3.4). 
 
+</div>
+
+<div id="page6-div" style="position:relative;width:918px;height:1188px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1  *
@@ -675,6 +697,10 @@ other requirements might also apply to their environment.  
 If your organization is subject to a legal restriction that prevents the organization from meeting a PCI DSS 
 
 requirement, check the “No” column for that requirement and complete the relevant attestation in Part 3. 
+
+</div>
+
+<div id="page7-div" style="position:relative;width:918px;height:1188px;">
 
 ** **
 
@@ -804,6 +830,10 @@ URL: 
 
  
 
+</div>
+
+<div id="page8-div" style="position:relative;width:918px;height:1188px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service ProvidersRev. 1.1 – Section 1: Assessment Information *
@@ -921,6 +951,10 @@ Type of service(s) assessed: 
 *“Others.” If you’re unsure whether a category could apply to your service, consult with the applicable *
 
 *payment brand.  *
+
+</div>
+
+<div id="page9-div" style="position:relative;width:918px;height:1188px;">
 
 ** **
 
@@ -1115,6 +1149,10 @@ summary of locations included in the PCI DSS review.  
            
 
  
+
+</div>
+
+<div id="page10-div" style="position:relative;width:918px;height:1188px;">
 
 ** **
 
@@ -1332,6 +1370,10 @@ Description of services provided by QIR:
 
  
 
+</div>
+
+<div id="page11-div" style="position:relative;width:918px;height:1188px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service ProvidersRev. 1.1 – Section 1: Assessment Information *
@@ -1397,6 +1439,10 @@ agents, etc.) for the purpose of the services being validated? 
            
 
 ***Note:** Requirement 12.8 applies to all entities in this list. *
+
+</div>
+
+<div id="page12-div" style="position:relative;width:918px;height:1188px;">
 
 ** **
 
@@ -1616,6 +1662,10 @@ Appendix A2: 
 
 * *
 
+</div>
+
+<div id="page13-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -1803,6 +1853,10 @@ Interview personnel 
  
 
  
+
+</div>
+
+<div id="page14-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -2045,6 +2099,10 @@ cardholder data environment as follows: 
 *or manage. *
 
  
+
+</div>
+
+<div id="page15-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -2306,6 +2364,10 @@ configurations 
 
  
 
+</div>
+
+<div id="page16-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -2526,6 +2588,10 @@ owned devices 
 
  
 
+</div>
+
+<div id="page17-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -2627,6 +2693,10 @@ Interview personnel 
  
 
  
+
+</div>
+
+<div id="page18-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -2870,6 +2940,10 @@ Examine system configurations 
 
  
 
+</div>
+
+<div id="page19-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -3072,6 +3146,10 @@ Interview personnel 
 
  
 
+</div>
+
+<div id="page20-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -3231,6 +3309,10 @@ Examine system configurations 
  
 
  
+
+</div>
+
+<div id="page21-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -3491,6 +3573,10 @@ system components 
  
 
  
+
+</div>
+
+<div id="page22-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -3778,6 +3864,10 @@ Interview personnel 
 
  
 
+</div>
+
+<div id="page23-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -3853,6 +3943,10 @@ procedures 
  
 
  
+
+</div>
+
+<div id="page24-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -4106,6 +4200,10 @@ justification 
 
  
 
+</div>
+
+<div id="page25-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -4301,6 +4399,10 @@ Database contents 
  
 
  
+
+</div>
+
+<div id="page26-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -4501,6 +4603,10 @@ Observe displays of PAN 
  
 
  
+
+</div>
+
+<div id="page27-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -4710,6 +4816,10 @@ Interview personnel 
 
  
 
+</div>
+
+<div id="page28-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -4883,6 +4993,10 @@ Examine user access lists 
  
 
  
+
+</div>
+
+<div id="page29-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -5122,6 +5236,10 @@ procedures 
 
  
 
+</div>
+
+<div id="page30-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -5350,6 +5468,10 @@ Interview personnel 
 
  
 
+</div>
+
+<div id="page31-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -5566,6 +5688,10 @@ Interview personnel 
 
  
 
+</div>
+
+<div id="page32-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -5766,6 +5892,10 @@ Examine system configurations 
 
  
 
+</div>
+
+<div id="page33-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -5935,6 +6065,10 @@ Interview personnel 
  
 
  
+
+</div>
+
+<div id="page34-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -6148,6 +6282,10 @@ Review log retention processes 
 
  
 
+</div>
+
+<div id="page35-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -6285,6 +6423,10 @@ Interview personnel 
  
 
  
+
+</div>
+
+<div id="page36-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -6439,6 +6581,10 @@ Review policies and procedures 
  
 
  
+
+</div>
+
+<div id="page37-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -6658,6 +6804,10 @@ Interview personnel 
 
  
 
+</div>
+
+<div id="page38-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -6859,6 +7009,10 @@ Examine access control settings 
  
 
  
+
+</div>
+
+<div id="page39-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -7098,6 +7252,10 @@ documentation 
 
  
 
+</div>
+
+<div id="page40-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -7299,6 +7457,10 @@ networks 
  
 
  
+
+</div>
+
+<div id="page41-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -7542,6 +7704,10 @@ Interview responsible personnel 
 
  
 
+</div>
+
+<div id="page42-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -7764,6 +7930,10 @@ Interview responsible personnel 
 
  
 
+</div>
+
+<div id="page43-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -7906,6 +8076,10 @@ settings 
 
  
 
+</div>
+
+<div id="page44-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -7997,6 +8171,10 @@ Interview personnel 
  
 
  
+
+</div>
+
+<div id="page45-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -8205,6 +8383,10 @@ Review user IDs 
  
 
  
+
+</div>
+
+<div id="page46-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -8417,6 +8599,10 @@ Interview personnel 
  
 
  
+
+</div>
+
+<div id="page47-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -8655,6 +8841,10 @@ Observe processes 
  
 
  
+
+</div>
+
+<div id="page48-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -8896,6 +9086,10 @@ Observe data transmissions 
 
  
 
+</div>
+
+<div id="page49-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -9126,6 +9320,10 @@ Observe internal processes 
 
  
 
+</div>
+
+<div id="page50-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -9342,6 +9540,10 @@ connecting remotely 
 
  
 
+</div>
+
+<div id="page51-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -9520,6 +9722,10 @@ Interview personnel 
 
  
 
+</div>
+
+<div id="page52-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -9653,6 +9859,10 @@ controls 
  
 
  
+
+</div>
+
+<div id="page53-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -9867,6 +10077,10 @@ Interview personnel 
  
 
 *** ***
+
+</div>
+
+<div id="page54-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -10096,6 +10310,10 @@ Observe locations  
 
  
 
+</div>
+
+<div id="page55-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -10275,6 +10493,10 @@ system 
  
 
  
+
+</div>
+
+<div id="page56-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -10556,6 +10778,10 @@ Examine the visitor log  
 
  
 
+</div>
+
+<div id="page57-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -10836,6 +11062,10 @@ Examine inventory logs 
 
  
 
+</div>
+
+<div id="page58-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -11072,6 +11302,10 @@ Interview personnel 
 
  
 
+</div>
+
+<div id="page59-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -11274,6 +11508,10 @@ Interview personnel 
 
  
 
+</div>
+
+<div id="page60-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -11448,6 +11686,10 @@ Review training materials 
 
  
 
+</div>
+
+<div id="page61-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -11555,6 +11797,10 @@ Interview personnel 
  
 
  
+
+</div>
+
+<div id="page62-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -11819,6 +12065,10 @@ Examine audit log settings 
  
 
  
+
+</div>
+
+<div id="page63-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -12098,6 +12348,10 @@ Examine audit log settings 
 
  
 
+</div>
+
+<div id="page64-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -12329,6 +12583,10 @@ and logs 
  
 
  
+
+</div>
+
+<div id="page65-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -12564,6 +12822,10 @@ permissions 
 
  
 
+</div>
+
+<div id="page66-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -12794,6 +13056,10 @@ Interview personnel 
 
  
 
+</div>
+
+<div id="page67-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -13014,6 +13280,10 @@ procedures 
 
  
 
+</div>
+
+<div id="page68-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -13200,6 +13470,10 @@ security control failures 
 
  
 
+</div>
+
+<div id="page69-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -13291,6 +13565,10 @@ Interview personnel 
  
 
  
+
+</div>
+
+<div id="page70-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -13471,6 +13749,10 @@ Examine inventory records 
  
 
  
+
+</div>
+
+<div id="page71-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -13653,6 +13935,10 @@ Review scan reports 
  
 
  
+
+</div>
+
+<div id="page72-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -13872,6 +14158,10 @@ required to be a QSA or ASV)? 
 
  
 
+</div>
+
+<div id="page73-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -14043,6 +14333,10 @@ personnel 
  
 
  
+
+</div>
+
+<div id="page74-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -14280,6 +14574,10 @@ personnel 
 
  
 
+</div>
+
+<div id="page75-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -14516,6 +14814,10 @@ documentation 
 
  
 
+</div>
+
+<div id="page76-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -14676,6 +14978,10 @@ settings 
 
  
 
+</div>
+
+<div id="page77-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -14755,6 +15061,10 @@ Interview personnel 
  
 
  
+
+</div>
+
+<div id="page78-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -14902,7 +15212,7 @@ Interview personnel 
 
  
 
-(b)  Is the risk assessment process performed at least 
+\(b)  Is the risk assessment process performed at least 
 
 annually and upon significant changes to the 
 
@@ -14959,6 +15269,10 @@ following: 
  
 
  
+
+</div>
+
+<div id="page79-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -15226,6 +15540,10 @@ personnel 
 
  
 
+</div>
+
+<div id="page80-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -15451,6 +15769,10 @@ policy and procedures 
  
 
  
+
+</div>
+
+<div id="page81-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -15724,6 +16046,10 @@ documentation 
 
  
 
+</div>
+
+<div id="page82-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -15898,6 +16224,10 @@ Review list of service providers  
 
  
 
+</div>
+
+<div id="page83-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -16071,6 +16401,10 @@ documentation 
  
 
  
+
+</div>
+
+<div id="page84-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -16291,6 +16625,10 @@ procedures 
  
 
  
+
+</div>
+
+<div id="page85-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -16562,6 +16900,10 @@ personnel 
 
  
 
+</div>
+
+<div id="page86-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -16616,7 +16958,7 @@ policies and operational procedures, as follows: 
 
  
 
-(a) Do reviews cover the following processes:  
+\(a) Do reviews cover the following processes:  
 
   Daily log reviews  
 
@@ -16652,7 +16994,7 @@ Interview personnel 
 
  
 
-(b) Are reviews performed at least quarterly?   
+\(b) Are reviews performed at least quarterly?   
 
  
 
@@ -16705,6 +17047,10 @@ the quarterly reviews 
  
 
  
+
+</div>
+
+<div id="page87-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -16861,6 +17207,10 @@ entities 
  
 
  
+
+</div>
+
+<div id="page88-div" style="position:relative;width:1188px;height:918px;">
 
 ** **
 
@@ -17120,6 +17470,10 @@ procedures 
 
  
 
+</div>
+
+<div id="page89-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -17266,6 +17620,10 @@ Mitigation and Migration Plan 
 
  
 
+</div>
+
+<div id="page90-div" style="position:relative;width:1188px;height:918px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -17359,6 +17717,10 @@ requirements. Entities required to validate to this Appendix should use the
 of Compliance for reporting, and consult with the applicable payment brand and/or acquirer for submission procedures.    
 
  
+
+</div>
+
+<div id="page91-div" style="position:relative;width:918px;height:1188px;">
 
 ** **
 
@@ -17462,6 +17824,10 @@ maintain compensating controls. 
 
  
 
+</div>
+
+<div id="page92-div" style="position:relative;width:918px;height:1188px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 2: Self-Assessment Questionnaire *
@@ -17555,6 +17921,10 @@ Cardholder data is never stored electronically  
            
 
            
+
+</div>
+
+<div id="page93-div" style="position:relative;width:918px;height:1188px;">
 
 ** **
 
@@ -17704,6 +18074,10 @@ Cardholder data is never stored electronically  
 
            
 
+</div>
+
+<div id="page94-div" style="position:relative;width:918px;height:1188px;">
+
 ** **
 
 *PCI DSS v3.2 SAQ D for Service Providers, Rev. 1.1 – Section 3: Validation and Attestation Details *
@@ -17815,6 +18189,10 @@ my environment, at all times. 
 If my environment changes, I recognize I must reassess my environment and implement any additional 
 
 PCI DSS requirements that apply.  
+
+</div>
+
+<div id="page95-div" style="position:relative;width:918px;height:1188px;">
 
 ** **
 
@@ -17935,6 +18313,10 @@ transactions. 
    Personal identification number entered by cardholder during a card-present transaction, and/or encrypted PIN block present 
 
 within the transaction message. 
+
+</div>
+
+<div id="page96-div" style="position:relative;width:918px;height:1188px;">
 
 ** **
 
@@ -18157,3 +18539,5 @@ Entities using SSL/early TLS 
            
 
  
+
+</div>
