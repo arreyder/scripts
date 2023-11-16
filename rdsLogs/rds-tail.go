@@ -15,7 +15,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/rds"
-	"github.com/logrusorgru/aurora"
 )
 
 func main() {
@@ -63,12 +62,12 @@ func main() {
 }
 
 func tailLogs(svc *rds.RDS, instanceIdentifier string) error {
-	input := &rds.DescribeDBLogFilesInput{
-		DBInstanceIdentifier: aws.String(instanceIdentifier),
-	}
+	var lastMarker string
 
 	for {
-		output, err := svc.DescribeDBLogFiles(input)
+		output, err := svc.DescribeDBLogFiles(&rds.DescribeDBLogFilesInput{
+			DBInstanceIdentifier: aws.String(instanceIdentifier),
+		})
 		if err != nil {
 			return err
 		}
@@ -83,85 +82,62 @@ func tailLogs(svc *rds.RDS, instanceIdentifier string) error {
 		})
 
 		mostRecentLogFile := output.DescribeDBLogFiles[0]
-		err = downloadAndPrintLog(svc, instanceIdentifier, *mostRecentLogFile.LogFileName)
+		newMarker, err := downloadAndPrintLog(svc, instanceIdentifier, *mostRecentLogFile.LogFileName, lastMarker)
 		if err != nil {
 			return err
 		}
 
-		time.Sleep(10 * time.Second) // Wait before polling again
+		lastMarker = newMarker
+		time.Sleep(10 * time.Second)
 	}
 }
 
-func downloadAndPrintLog(svc *rds.RDS, instanceIdentifier, logFileName string) error {
-	fmt.Printf("Viewing log file: %s\n", logFileName)
-
+func downloadAndPrintLog(svc *rds.RDS, instanceIdentifier, logFileName, lastMarker string) (string, error) {
 	input := &rds.DownloadDBLogFilePortionInput{
 		DBInstanceIdentifier: aws.String(instanceIdentifier),
 		LogFileName:          aws.String(logFileName),
-		NumberOfLines:        aws.Int64(100), // Adjust as needed
+		Marker:               aws.String(lastMarker),
 	}
 
 	output, err := svc.DownloadDBLogFilePortion(input)
 	if err != nil {
-		return err
+		return "", err
 	}
 
-	au := aurora.NewAurora(true)
 	scanner := bufio.NewScanner(strings.NewReader(*output.LogFileData))
 	for scanner.Scan() {
 		line := scanner.Text()
-		colorizedLine := colorizeLogLine(line, au)
+		colorizedLine := colorizeLogLine(line)
 		fmt.Println(colorizedLine)
 	}
 
-	return scanner.Err()
+	if output.Marker == nil {
+		return lastMarker, nil
+	}
+
+	return *output.Marker, scanner.Err()
 }
 
-func colorizeLogLine(line string, au aurora.Aurora) string {
-	/*	parts := strings.SplitN(line, " ", 5)
-		if len(parts) < 5 {
-			return au.White(line).String() // Non-standard lines in default color
-		}
-
-		// Extracting timestamp and log level
-		timestamp := parts[0] + " " + parts[1]
-		logLevel := parts[4]
-
-		var levelColorized aurora.Value
-		switch {
-		case strings.Contains(logLevel, "ERROR"):
-			levelColorized = au.Red(logLevel)
-		case strings.Contains(logLevel, "WARNING"):
-			levelColorized = au.Yellow(logLevel)
-		case strings.Contains(logLevel, "LOG"):
-			levelColorized = au.Cyan(logLevel)
-		default:
-			levelColorized = au.White(logLevel)
-		}
-	*/
-
+func colorizeLogLine(line string) string {
 	// Detecting SQL content
 	if strings.Contains(line, "SELECT") || strings.Contains(line, "INSERT") || strings.Contains(line, "ALTER") ||
 		strings.Contains(line, "WITH") || strings.Contains(line, "CREATE") || strings.Contains(line, "EXPLAIN") ||
 		strings.Contains(line, "UPDATE") || strings.Contains(line, "DELETE") || strings.Contains(line, "VALUES") ||
 		strings.Contains(line, "FROM") || strings.Contains(line, "WHERE") || strings.Contains(line, "WITH") {
-		lexer := lexers.Get("PostgreSQL")
+		lexer := lexers.Get("postgresql")
 		formatter := formatters.Get("terminal256")
 		iterator, err := lexer.Tokenise(nil, line)
 		if err != nil {
-			return au.BrightBlue(line).String() // Fallback to a different color
+			return line // Fallback to the original line on error
 		}
 
 		var b bytes.Buffer
 		err = formatter.Format(&b, styles.Get("monokai"), iterator)
 		if err != nil {
-			return au.BrightBlue(line).String() // Fallback on error
+			return line // Fallback on error
 		}
 		return b.String()
 	}
 
-	return au.BrightBlue(line).String()
-
-	// Return non-SQL lines with log level colorized
-	// return fmt.Sprintf("%s %s", au.Gray(12, timestamp), levelColorized)
+	return line // Non-SQL lines are returned as is
 }
