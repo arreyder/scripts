@@ -119,25 +119,17 @@ func downloadAndPrintLog(svc *rds.RDS, instanceIdentifier, logFileName, lastMark
 }
 
 func colorizeLogLine(line string) string {
-	// Detecting SQL content
-	if strings.Contains(line, "SELECT") || strings.Contains(line, "INSERT") || strings.Contains(line, "ALTER") ||
-		strings.Contains(line, "WITH") || strings.Contains(line, "CREATE") || strings.Contains(line, "EXPLAIN") ||
-		strings.Contains(line, "UPDATE") || strings.Contains(line, "DELETE") || strings.Contains(line, "VALUES") ||
-		strings.Contains(line, "FROM") || strings.Contains(line, "WHERE") || strings.Contains(line, "WITH") {
-		lexer := lexers.Get("postgresql")
-		formatter := formatters.Get("terminal256")
-		iterator, err := lexer.Tokenise(nil, line)
-		if err != nil {
-			return line // Fallback to the original line on error
-		}
-
-		var b bytes.Buffer
-		err = formatter.Format(&b, styles.Get("monokai"), iterator)
-		if err != nil {
-			return line // Fallback on error
-		}
-		return b.String()
+	lexer := lexers.Get("postgresql")
+	formatter := formatters.Get("terminal256")
+	iterator, err := lexer.Tokenise(nil, line)
+	if err != nil {
+		return line // Fallback to the original line on error
 	}
 
-	return line // Non-SQL lines are returned as is
+	var b bytes.Buffer
+	err = formatter.Format(&b, styles.Get("monokai"), iterator)
+	if err != nil {
+		return line // Fallback on error
+	}
+	return b.String()
 }
