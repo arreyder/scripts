@@ -1,0 +1,118 @@
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"log"
+	"os"
+	"regexp"
+	"strings"
+	"time"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/rds"
+)
+
+type LogMessage struct {
+	Message string `json:"message"`
+}
+
+// This function splits the log data into messages
+func splitLogDataIntoMessages(logData string) []string {
+	// Create a regex to match the log line prefix
+	pattern := `[\d-]{10} [\d:]{8} UTC::@:\[\d*\]:LOG:`
+	re := regexp.MustCompile(pattern)
+
+	// Split the log data into lines
+	lines := strings.Split(logData, "\n")
+
+	var messages []string
+	var currentMessage strings.Builder
+	for _, line := range lines {
+		if re.MatchString(line) {
+			// If the line matches the log line prefix, it's a new log message
+			if currentMessage.Len() > 0 {
+				messages = append(messages, currentMessage.String())
+				currentMessage.Reset()
+			}
+			currentMessage.WriteString(line)
+		} else {
+			// If the line doesn't match the log line prefix, it's a continuation of the current log message
+			currentMessage.WriteString(" " + line)
+		}
+	}
+	if currentMessage.Len() > 0 {
+		messages = append(messages, currentMessage.String())
+	}
+
+	return messages
+}
+
+func main() {
+	sess, err := session.NewSessionWithOptions(session.Options{
+		SharedConfigState: session.SharedConfigEnable,
+	})
+
+	if err != nil {
+		log.Fatalf("Failed to create session: %v", err)
+	}
+
+	dbInstanceIdentifier := os.Getenv("DB_INSTANCE_IDENTIFIER")
+	if dbInstanceIdentifier == "" {
+		log.Fatal("DB_INSTANCE_IDENTIFIER environment variable is not set")
+	}
+
+	svc := rds.New(sess)
+
+	for {
+		input := &rds.DescribeDBLogFilesInput{
+			DBInstanceIdentifier: aws.String(dbInstanceIdentifier),
+		}
+
+		result, err := svc.DescribeDBLogFiles(input)
+		if err != nil {
+			log.Fatalf("Failed to describe DB log files: %v", err)
+		}
+
+		for _, file := range result.DescribeDBLogFiles {
+			downloadInput := &rds.DownloadDBLogFilePortionInput{
+				DBInstanceIdentifier: aws.String(dbInstanceIdentifier),
+				LogFileName:          file.LogFileName,
+			}
+
+			downloadResult, err := svc.DownloadDBLogFilePortion(downloadInput)
+			if err != nil {
+				log.Fatalf("Failed to download DB log file portion: %v", err)
+			}
+
+			// Split the log file portion into messages
+			messages := splitLogDataIntoMessages(*downloadResult.LogFileData)
+
+			for _, message := range messages {
+				// Ignore empty messages
+				if strings.TrimSpace(message) == "" {
+					continue
+				}
+
+				// Create a LogMessage struct
+				logMessage := LogMessage{
+					Message: message,
+				}
+
+				// Convert the LogMessage struct to JSON
+				jsonData, err := json.Marshal(logMessage)
+				if err != nil {
+					log.Fatalf("Failed to convert log message to JSON: %v", err)
+				}
+
+				// Print the JSON data to stdout
+				fmt.Println(string(jsonData))
+			}
+		}
+
+		// Wait
+
+		time.Sleep(5 * time.Minute)
+	}
+}

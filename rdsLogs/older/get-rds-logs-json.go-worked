@@ -1,0 +1,88 @@
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"log"
+	"os"
+	"strings"
+	"time"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/rds"
+)
+
+type LogMessage struct {
+	Message string `json:"message"`
+}
+
+func main() {
+	sess, err := session.NewSessionWithOptions(session.Options{
+		SharedConfigState: session.SharedConfigEnable,
+	})
+
+	if err != nil {
+		log.Fatalf("Failed to create session: %v", err)
+	}
+
+	dbInstanceIdentifier := os.Getenv("DB_INSTANCE_IDENTIFIER")
+	if dbInstanceIdentifier == "" {
+		log.Fatal("DB_INSTANCE_IDENTIFIER environment variable is not set")
+	}
+
+	svc := rds.New(sess)
+
+	for {
+		input := &rds.DescribeDBLogFilesInput{
+			DBInstanceIdentifier: aws.String(dbInstanceIdentifier),
+		}
+
+		result, err := svc.DescribeDBLogFiles(input)
+		if err != nil {
+			log.Fatalf("Failed to describe DB log files: %v", err)
+		}
+
+		for _, file := range result.DescribeDBLogFiles {
+			downloadInput := &rds.DownloadDBLogFilePortionInput{
+				DBInstanceIdentifier: aws.String(dbInstanceIdentifier),
+				LogFileName:          file.LogFileName,
+			}
+
+			downloadResult, err := svc.DownloadDBLogFilePortion(downloadInput)
+			if err != nil {
+				log.Fatalf("Failed to download DB log file portion: %v", err)
+			}
+
+			// Split the log file portion into lines
+			lines := strings.Split(*downloadResult.LogFileData, "\n")
+
+			for _, line := range lines {
+				// Ignore empty lines
+				if strings.TrimSpace(line) == "" {
+					continue
+				}
+
+				// Replace newline characters within a log message with spaces
+				line = strings.ReplaceAll(line, "\n", " ")
+
+				// Create a LogMessage struct
+				logMessage := LogMessage{
+					Message: line,
+				}
+
+				// Convert the LogMessage struct to JSON
+				jsonData, err := json.Marshal(logMessage)
+				if err != nil {
+					log.Fatalf("Failed to convert log message to JSON: %v", err)
+				}
+
+				// Print the JSON data to stdout
+				fmt.Println(string(jsonData))
+			}
+		}
+
+		// Wait for a while before polling again
+		time.Sleep(5 * time.Minute)
+	}
+}

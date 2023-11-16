@@ -1,0 +1,2 @@
+    logLinePattern := regexp.MustCompile(`^[\d-]{10} [\d:]{8} UTC:[^:]*:[^@]*@[^:]*:\[\d*\]:.*$|^[\d-]{10} [\d:]{8} UTC::@:\[\d*\]:LOG:.*$`)
+
